@@ -1,0 +1,5 @@
+url: https://countryapi.io/dashboard
+key: Lwvv8DCX2aW4v6u864vNaoi1Ugcc9RG1gfFYWLAr
+
+pass: PasswordToBeChanged
+

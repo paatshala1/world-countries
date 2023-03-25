@@ -1,0 +1,30 @@
+ul {
+  list-style: none;
+}
+
+.tiles-container {
+  max-width: 1200px;
+  background-color: #2b2e2b;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 0.5rem;
+}
+
+.tiles-expand {
+  justify-self: right;
+  margin-top: 2rem;
+  margin-right: 1rem;
+  text-decoration: underline;
+}
+
+.tiles-expand:hover {
+  cursor: pointer;
+}
+
+.tiles-title {
+  text-align: left;
+  font-size: 30px;
+  grid-column: 1 / 3;
+}

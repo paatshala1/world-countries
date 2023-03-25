@@ -1,0 +1,23 @@
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 5rem;
+}
+
+.nav-container__options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.nav-container__head {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.selected {
+  color: #00ff77c7;
+  font-weight: bold;
+}

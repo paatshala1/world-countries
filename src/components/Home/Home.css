@@ -1,0 +1,16 @@
+.logo__circle {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  border: thin solid whitesmoke;
+  padding-bottom: 0.1rem;
+  background-color: #353434;
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.logo {
+  max-width: 600px;
+}

@@ -1,0 +1,7 @@
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.nav-bar {
+  max-width: 150px;
+}

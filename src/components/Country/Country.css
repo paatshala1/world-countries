@@ -1,0 +1,19 @@
+.result-detail {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.result-detail__header {
+  grid-column: 1 / 3;
+}
+
+.result-flag,
+.resul-location {
+  grid-column: 1 / 3;
+}
+
+.result-flag__image {
+  height: 300px;
+}

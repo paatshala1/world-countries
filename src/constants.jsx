@@ -18,3 +18,10 @@ export const continents = [
   { id: 4, code: 'europe', name: 'europe' },
   { id: 5, code: 'oceania', name: 'oceania' },
 ]
+
+export const menuOptions = [
+  { path: 'home', label: 'Home' },
+  { path: 'continent', label: 'By Continent' },
+  { path: 'language', label: 'By Language' },
+  { path: 'about', label: 'About' },
+]

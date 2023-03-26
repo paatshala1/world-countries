@@ -4,6 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import MainContext from '../../store/main-context'
 import kywLogo from '/images/logo_world2.png'
 import './NavBar.css'
+import { menuOptions } from '../../constants'
 
 export default function NavBar() {
   const ctx = useContext(MainContext)
@@ -12,7 +13,7 @@ export default function NavBar() {
   const logStatus = JSON.parse(data)
   return (
     <>
-      <div className='flex flex-row justify-between bg-indigo-900 p-4'>
+      <div className=' sticky top-0 z-10 flex flex-row justify-between bg-indigo-900 p-4'>
         {logStatus ? (
           // Just keeping cutomized className to use the @apply from tailwind
           <div
@@ -51,49 +52,24 @@ export default function NavBar() {
         {logStatus ? (
           <ul
             name='menu-options-container'
-            className='my-flex-grow-1 flex flex-grow flex-row justify-evenly'
+            className='my-flex-grow-1 flex flex-grow flex-row content-center justify-evenly'
           >
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? 'text-3xl text-orange-600 ' : ''
-                }
-                to='/home'
-              >
-                Home
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? 'text-3xl text-orange-600' : ''
-                }
-                to='continent'
-              >
-                By Continent
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? 'text-3xl text-orange-600' : ''
-                }
-                to='language'
-              >
-                By Language
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive ? 'text-3xl text-orange-600' : ''
-                }
-                to='about'
-              >
-                About
-              </NavLink>
-            </li>
-            <li>
+            {menuOptions.map(option => {
+              return (
+                <li key={option.path} className=' flex items-center'>
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? 'text-3xl text-orange-600 ' : ''
+                    }
+                    to={`/${option.path}`}
+                  >
+                    {option.label}
+                  </NavLink>
+                </li>
+              )
+            })}
+
+            <li className=' flex items-center'>
               <div>
                 <NavLink to='/' onClick={ctx.onLogOut}>
                   Log out

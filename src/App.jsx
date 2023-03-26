@@ -1,6 +1,7 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
 import Entrance from './components/Entrance/Entrance'
+import LogInComponent from './components/LogIn/LogInComponent'
 import Home from './components/Home/Home'
 import NavBar from './components/NavBar/NavBar'
 import ByContinent from './components/ByContinent/ByContinent'
@@ -21,6 +22,7 @@ function App() {
             <Route path='/' element={<Entrance />} />
 
             <Route path='/*' element={<NavBar />}>
+              <Route path='login' element={<LogInComponent />} />
               <Route path='continent/' element={<ByContinent />} />
               <Route path='home' element={<Home />} />
               <Route path='continent/' element={<ByContinent />} />

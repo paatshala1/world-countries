@@ -17,26 +17,26 @@ export default function NavBar() {
           // Just keeping cutomized className to use the @apply from tailwind
           <div
             name='menu-head-container'
-            className='flex flex-row justify-start flex-grow-4'
+            className='my-flex-grow-4 flex flex-row justify-start'
           >
             <NavLink to='home'>
               <img
                 src={kywLogo}
-                className='logo max-w-150 w-2/3'
-                alt='iFlix logo'
+                className='logo my-max-w-150 w-2/3'
+                alt='KYW logo'
               />
             </NavLink>
             <div className='flex flex-col'>
               <p className='text-2xl'>
-                <span className='text-orange-600 text-3xl font-bold'>K</span>{' '}
+                <span className='text-3xl font-bold text-orange-600'>K</span>{' '}
                 now
               </p>
               <p className='text-2xl'>
-                <span className='text-orange-600 text-3xl font-bold'>Y</span>{' '}
+                <span className='text-3xl font-bold text-orange-600'>Y</span>{' '}
                 our
               </p>
               <p className='text-2xl'>
-                <span className='text-orange-600 text-3xl font-bold'>W</span>{' '}
+                <span className='text-3xl font-bold text-orange-600'>W</span>{' '}
                 orld
               </p>
             </div>
@@ -51,12 +51,12 @@ export default function NavBar() {
         {logStatus ? (
           <ul
             name='menu-options-container'
-            className='flex flex-row justify-evenly flex-grow flex-grow-1'
+            className='my-flex-grow-1 flex flex-grow flex-row justify-evenly'
           >
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-orange-600 text-3xl ' : ''
+                  isActive ? 'text-3xl text-orange-600 ' : ''
                 }
                 to='/home'
               >
@@ -66,7 +66,7 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-orange-600 text-3xl' : ''
+                  isActive ? 'text-3xl text-orange-600' : ''
                 }
                 to='continent'
               >
@@ -76,7 +76,7 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-orange-600 text-3xl' : ''
+                  isActive ? 'text-3xl text-orange-600' : ''
                 }
                 to='language'
               >
@@ -86,7 +86,7 @@ export default function NavBar() {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  isActive ? 'text-orange-600 text-3xl' : ''
+                  isActive ? 'text-3xl text-orange-600' : ''
                 }
                 to='about'
               >

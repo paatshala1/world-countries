@@ -1,4 +1,4 @@
-.max-w-150 {
+.my-max-w-150 {
   max-width: 150px;
 }
 
@@ -9,17 +9,12 @@
   margin-bottom: 5rem;
 }
 
-.flex-grow-1 {
+.my-flex-grow-1 {
   /* @apply flex flex-row justify-evenly flex-grow */
   flex-grow: 1;
 }
 
-.flex-grow-4 {
+.my-flex-grow-4 {
   /* @apply flex flex-row justify-start; */
   flex-grow: 4;
-}
-
-.selected {
-  color: #00ff77c7;
-  font-weight: bold;
 }

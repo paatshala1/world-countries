@@ -15,12 +15,12 @@ export default function Entrance() {
   return (
     <div className='App'>
       <NavLink to='home' onClick={ctx.onLogIn}>
-        <img src={kywLogo} className='logo iflix' alt='iFlix logo'></img>
+        <img src={kywLogo} className='logo iflix' alt='KYW logo'></img>
       </NavLink>
-      <h1 className='text-sky-800 text-6xl'>
-        <span className='text-orange-600 text-6xl font-bold'>K</span>now{' '}
-        <span className='text-orange-600 text-6xl font-bold'>Y</span>our{' '}
-        <span className='text-orange-600 text-6xl font-bold'>W</span>orld...get
+      <h1 className='text-6xl text-sky-800'>
+        <span className='text-6xl font-bold text-orange-600'>K</span>now{' '}
+        <span className='text-6xl font-bold text-orange-600'>Y</span>our{' '}
+        <span className='text-6xl font-bold text-orange-600'>W</span>orld...get
         in!
       </h1>
       <div className='absolute bottom-3 left-5'>

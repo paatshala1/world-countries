@@ -17,7 +17,7 @@ export default function Entrance() {
       <NavLink to='home' onClick={ctx.onLogIn}>
         <img src={iflixLogo} className='logo iflix' alt='iFlix logo'></img>
       </NavLink>
-      <h1>Know your world...</h1>
+      <h1 className='text-sky-800 text-6xl'>Know your world...</h1>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 /* eslint-disable import/no-absolute-path */
 import { useContext } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Outlet } from 'react-router-dom'
 import MainContext from '../../store/main-context'
 import iflixLogo from '/images/logo.png'
 import './NavBar.css'
@@ -12,13 +12,13 @@ export default function NavBar() {
   const logStatus = JSON.parse(data)
   return (
     <>
-      <div className='nav-container'>
+      <div className='flex flex-row justify-between mb-2 bg-blue-500 p-4'>
         {logStatus ? (
           <div className='nav-container__head'>
             <NavLink to='home'>
               <img src={iflixLogo} className='logo nav-bar' alt='iFlix logo' />
             </NavLink>
-            <pre>
+            <pre className='text-2xl'>
               World
               <br />
               Countries
@@ -70,6 +70,8 @@ export default function NavBar() {
           </ul>
         ) : null}
       </div>
+
+      <Outlet />
     </>
   )
 }

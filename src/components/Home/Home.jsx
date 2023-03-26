@@ -16,8 +16,8 @@ export default function Home() {
         <NavLink to='/' />
       ) : (
         <>
-          <div className='logo__circle'>
-            <img src={mapaMundi} className='logo' alt='Mapa Mundi' />
+          <div className='rounded-lg'>
+            <img src={mapaMundi} className='rounded-lg logo' alt='Mapa Mundi' />
           </div>
           <SearchBar />
         </>

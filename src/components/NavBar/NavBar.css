@@ -1,4 +1,4 @@
-.nav-bar {
+.max-w-150 {
   max-width: 150px;
 }
 
@@ -9,16 +9,14 @@
   margin-bottom: 5rem;
 }
 
-.nav-container__options {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+.flex-grow-1 {
+  /* @apply flex flex-row justify-evenly flex-grow */
+  flex-grow: 1;
 }
 
-.nav-container__head {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.flex-grow-4 {
+  /* @apply flex flex-row justify-start; */
+  flex-grow: 4;
 }
 
 .selected {

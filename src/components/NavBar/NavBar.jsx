@@ -2,7 +2,7 @@
 import { useContext } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import MainContext from '../../store/main-context'
-import iflixLogo from '/images/logo.png'
+import kywLogo from '/images/logo_world2.png'
 import './NavBar.css'
 
 export default function NavBar() {
@@ -12,25 +12,52 @@ export default function NavBar() {
   const logStatus = JSON.parse(data)
   return (
     <>
-      <div className='flex flex-row justify-between mb-2 bg-blue-500 p-4'>
+      <div className='flex flex-row justify-between bg-indigo-900 p-4'>
         {logStatus ? (
-          <div className='nav-container__head'>
+          // Just keeping cutomized className to use the @apply from tailwind
+          <div
+            name='menu-head-container'
+            className='flex flex-row justify-start flex-grow-4'
+          >
             <NavLink to='home'>
-              <img src={iflixLogo} className='logo nav-bar' alt='iFlix logo' />
+              <img
+                src={kywLogo}
+                className='logo max-w-150 w-2/3'
+                alt='iFlix logo'
+              />
             </NavLink>
-            <pre className='text-2xl'>
+            <div className='flex flex-col'>
+              <p className='text-2xl'>
+                <span className='text-orange-600 text-3xl font-bold'>K</span>{' '}
+                now
+              </p>
+              <p className='text-2xl'>
+                <span className='text-orange-600 text-3xl font-bold'>Y</span>{' '}
+                our
+              </p>
+              <p className='text-2xl'>
+                <span className='text-orange-600 text-3xl font-bold'>W</span>{' '}
+                orld
+              </p>
+            </div>
+            {/* <pre className=''>
               World
               <br />
               Countries
-            </pre>
+            </pre> */}
           </div>
         ) : null}
 
         {logStatus ? (
-          <ul className='nav-container__options'>
+          <ul
+            name='menu-options-container'
+            className='flex flex-row justify-evenly flex-grow flex-grow-1'
+          >
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? 'selected' : '')}
+                className={({ isActive }) =>
+                  isActive ? 'text-orange-600 text-3xl ' : ''
+                }
                 to='/home'
               >
                 Home
@@ -38,7 +65,9 @@ export default function NavBar() {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? 'selected' : '')}
+                className={({ isActive }) =>
+                  isActive ? 'text-orange-600 text-3xl' : ''
+                }
                 to='continent'
               >
                 By Continent
@@ -46,7 +75,9 @@ export default function NavBar() {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? 'selected' : '')}
+                className={({ isActive }) =>
+                  isActive ? 'text-orange-600 text-3xl' : ''
+                }
                 to='language'
               >
                 By Language
@@ -54,7 +85,9 @@ export default function NavBar() {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? 'selected' : '')}
+                className={({ isActive }) =>
+                  isActive ? 'text-orange-600 text-3xl' : ''
+                }
                 to='about'
               >
                 About

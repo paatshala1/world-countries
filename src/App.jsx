@@ -10,6 +10,7 @@
 // import NotFound from './components/NotFound/NotFound'
 // import Countries from './components/Countries/Countries'
 
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     // We use shorthand for object (property name and value has the same name, so Lint recomends this.)
     <>
       <div className='h-screen '>
+        <Outlet />
         {/* <BrowserRouter>
           <Routes>
             <Route path='/' element={<Entrance />} />

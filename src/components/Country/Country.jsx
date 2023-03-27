@@ -45,14 +45,19 @@ export default function Country({ country }) {
   // --------------------------------------RETURN------------------------------------
 
   return (
-    <article className='result-detail'>
+    <article className='result-detail rounded-md bg-indigo-100 p-6'>
       <div className='result-detail__header'>
-        <p>Subregion: {subregion}</p>
-        <h1>{name}</h1>
-        <h2>{`Capital: ${capital}`}</h2>
+        <p className='text-indigo-700'>Subregion: {subregion}</p>
+        <h1 className='text-indigo-700'>{name}</h1>
+        <h2 className='text-indigo-700'>{`Capital: ${capital}`}</h2>
         <div>
-          <span>Find it in: </span>
-          <a href={googleMaps} target='_blank' rel='noreferrer'>
+          <span className='text-indigo-700'>Find it in: </span>
+          <a
+            href={googleMaps}
+            target='_blank'
+            rel='noreferrer'
+            className='text-orange-300'
+          >
             Google Maps
           </a>
         </div>
@@ -60,16 +65,18 @@ export default function Country({ country }) {
       </div>
 
       <section className='result-flag'>
-        <img
-          className='result-flag__image'
-          src={flagUrl}
-          alt={`Flag of ${name}`}
-        />
-        <p>{flagDesc}</p>
+        <div className=' flex flex-row gap-4 bg-indigo-400 p-5'>
+          <img
+            className='result-flag__image my-0 mx-auto'
+            src={flagUrl}
+            alt={`Flag of ${name}`}
+          />
+          <p className='text-white'>{flagDesc}</p>
+        </div>
       </section>
 
       <section>
-        <h4>Section 1</h4>
+        <h4 className='text-indigo-700'>Section 1</h4>
         <p>
           Area: {area} km<sup>2</sup>
         </p>
@@ -91,7 +98,7 @@ export default function Country({ country }) {
       </section>
 
       <section>
-        <h4>Section 2</h4>
+        <h4 className='text-indigo-700'>Section 2</h4>
         <p>Population: {population} hab.</p>
         <p>Languages</p>
         <ul>

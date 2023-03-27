@@ -1,5 +1,5 @@
 .tile {
-  height: 200px;
+  /* height: 200px; */
   border: thin solid lightgray;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);

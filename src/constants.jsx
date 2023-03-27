@@ -12,11 +12,36 @@ export const mainLanguages = [
 ]
 
 export const continents = [
-  { id: 1, code: 'asia', name: 'asia' },
-  { id: 2, code: 'africa', name: 'africa' },
-  { id: 3, code: 'america', name: 'america' },
-  { id: 4, code: 'europe', name: 'europe' },
-  { id: 5, code: 'oceania', name: 'oceania' },
+  {
+    id: 1,
+    code: 'asia',
+    name: 'asia',
+    image: '../../../public/images/asia-400x300.png',
+  },
+  {
+    id: 2,
+    code: 'africa',
+    name: 'africa',
+    image: '../../../public/images/africa-400x300.jpg',
+  },
+  {
+    id: 3,
+    code: 'america',
+    name: 'america',
+    image: '../../../public/images/america-400x300.png',
+  },
+  {
+    id: 4,
+    code: 'europe',
+    name: 'europe',
+    image: '../../../public/images/europe-400x300.png',
+  },
+  {
+    id: 5,
+    code: 'oceania',
+    name: 'oceania',
+    image: '../../../public/images/oceania-400x300.jpg',
+  },
 ]
 
 export const menuOptions = [

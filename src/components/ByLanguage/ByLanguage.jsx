@@ -12,7 +12,7 @@ export default function ByLanguage() {
   return (
     <>
       {logStatus ? (
-        <TilesList elements={mainLanguages} section='Language' />
+        <TilesList elements={mainLanguages} section='Language' sample={5} />
       ) : (
         <NavLink to='/' />
       )}

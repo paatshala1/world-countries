@@ -16,13 +16,13 @@ function App() {
   return (
     // We use shorthand for object (property name and value has the same name, so Lint recomends this.)
     <>
-      <div>
+      <div className='h-screen '>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Entrance />} />
+            <Route path='login' element={<LogInComponent />} />
 
             <Route path='/*' element={<NavBar />}>
-              <Route path='login' element={<LogInComponent />} />
               <Route path='continent/' element={<ByContinent />} />
               <Route path='home' element={<Home />} />
               <Route path='continent/' element={<ByContinent />} />

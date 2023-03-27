@@ -1,7 +1,7 @@
 /* eslint-disable import/no-absolute-path */
-import SearchBar from '../Search/Search'
+import SearchForm from '../SearchForm/SearchForm'
 import { useEffect } from 'react'
-import mapaMundi from '/images/mapa-mundi.jpg'
+import mapaMundi from '/images/mapaMundiAlphaChannel.png'
 import { NavLink } from 'react-router-dom'
 
 export default function Home() {
@@ -11,17 +11,21 @@ export default function Home() {
   const logStatus = JSON.parse(data)
 
   return (
-    <>
+    <section>
       {!logStatus ? (
         <NavLink to='/' />
       ) : (
         <>
-          <div className='rounded-lg'>
-            <img src={mapaMundi} className='rounded-lg logo' alt='Mapa Mundi' />
+          <div className=' mb-8'>
+            <img
+              src={mapaMundi}
+              className='my-0 mx-auto  w-96 rounded-full opacity-60 '
+              alt='Mapa Mundi'
+            />
           </div>
-          <SearchBar />
+          <SearchForm />
         </>
       )}
-    </>
+    </section>
   )
 }

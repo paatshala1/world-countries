@@ -13,7 +13,7 @@ export default function NavBar() {
   const logStatus = JSON.parse(data)
   return (
     <>
-      <div className=' sticky top-0 z-10 flex flex-row justify-between bg-indigo-900 p-4'>
+      <div className=' sticky top-0 z-10 mb-12 flex w-screen flex-row justify-between bg-indigo-600 p-4 px-20'>
         {logStatus ? (
           // Just keeping cutomized className to use the @apply from tailwind
           <div
@@ -29,15 +29,15 @@ export default function NavBar() {
             </NavLink>
             <div className='flex flex-col'>
               <p className='text-2xl'>
-                <span className='text-3xl font-bold text-orange-600'>K</span>{' '}
+                <span className='text-3xl font-bold text-orange-400'>K</span>{' '}
                 now
               </p>
               <p className='text-2xl'>
-                <span className='text-3xl font-bold text-orange-600'>Y</span>{' '}
+                <span className='text-3xl font-bold text-orange-400'>Y</span>{' '}
                 our
               </p>
               <p className='text-2xl'>
-                <span className='text-3xl font-bold text-orange-600'>W</span>{' '}
+                <span className='text-3xl font-bold text-orange-400'>W</span>{' '}
                 orld
               </p>
             </div>
@@ -59,7 +59,7 @@ export default function NavBar() {
                 <li key={option.path} className=' flex items-center'>
                   <NavLink
                     className={({ isActive }) =>
-                      isActive ? 'text-3xl text-orange-600 ' : ''
+                      isActive ? 'text-3xl text-orange-400 ' : ''
                     }
                     to={`/${option.path}`}
                   >
@@ -71,7 +71,7 @@ export default function NavBar() {
 
             <li className=' flex items-center'>
               <div>
-                <NavLink to='/' onClick={ctx.onLogOut}>
+                <NavLink to='/login' onClick={ctx.onLogOut}>
                   Log out
                 </NavLink>
               </div>

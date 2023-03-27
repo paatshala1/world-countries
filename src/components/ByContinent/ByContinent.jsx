@@ -12,7 +12,7 @@ export default function ByContinent(props) {
   return (
     <>
       {logStatus ? (
-        <TilesList elements={continents} section='Continent' />
+        <TilesList elements={continents} section='Continent' sample={3} />
       ) : (
         <NavLink to='/' />
       )}

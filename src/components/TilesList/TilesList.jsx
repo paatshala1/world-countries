@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Tile from '../Tile/Tile'
 import './TilesList.css'
 
-export default function TilesList({ elements, section }) {
+export default function TilesList({ elements, section, sample }) {
   function expandHandler() {
     setViewAll(prevState => {
       if (prevState[0]) {
@@ -17,12 +17,12 @@ export default function TilesList({ elements, section }) {
 
   const elementsToRender = viewAll[0]
     ? [...elements]
-    : elements.filter((e, i) => i < 3)
+    : elements.filter((e, i) => i < sample)
 
   const tilesToShow = (
-    <div className='tiles-container'>
-      <p className='tiles-title'>{'By ' + section}</p>
-      <div className='tiles-expand' onClick={expandHandler}>
+    <div className='tiles-container '>
+      <p className='tiles-title text-indigo-700'>{'By ' + section}</p>
+      <div className='tiles-expand text-indigo-700' onClick={expandHandler}>
         {viewAll[1]}
       </div>
       {elementsToRender.map(e => {

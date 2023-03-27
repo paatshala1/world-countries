@@ -11,6 +11,6 @@
   overflow: hidden;
 }
 
-.logo {
-  max-width: 600px;
+.my-bg-image {
+  background-image: url('/public/images/mapa-mundi.jpg');
 }

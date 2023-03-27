@@ -50,3 +50,19 @@ export const menuOptions = [
   { path: 'language', label: 'By Language' },
   { path: 'about', label: 'About' },
 ]
+
+export const emptyCountry = {
+  area: '',
+  borders: '',
+  capital: '',
+  code: '',
+  currencies: '',
+  driving: '',
+  flags: '',
+  languages: '',
+  maps: '',
+  name: '',
+  population: '',
+  subregion: '',
+  timezones: '',
+}

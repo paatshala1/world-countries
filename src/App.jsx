@@ -17,7 +17,7 @@ function App() {
     // We use shorthand for object (property name and value has the same name, so Lint recomends this.)
     <>
       <div className='h-screen '>
-        <BrowserRouter>
+        {/* <BrowserRouter>
           <Routes>
             <Route path='/' element={<Entrance />} />
             <Route path='login' element={<LogInComponent />} />
@@ -34,7 +34,7 @@ function App() {
 
             <Route path='*' element={<NotFound />} />
           </Routes>
-        </BrowserRouter>
+        </BrowserRouter> */}
       </div>
     </>
   )

@@ -1,7 +1,7 @@
 /* eslint-disable import/no-absolute-path */
 import SearchForm from '../SearchForm/SearchForm'
 import { useEffect } from 'react'
-import mapaMundi from '/images/mapaMundiAlphaChannel.png'
+// import mapaMundi from '/images/mapaMundiAlphaChannel.png'
 import { NavLink } from 'react-router-dom'
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
         <>
           <div className=' mb-8'>
             <img
-              src={mapaMundi}
+              src='https://asset.cloudinary.com/duwwpsl5r/a91188d2e284948b1ce1c7b6226affb8'
               className='my-0 mx-auto  w-96 rounded-full opacity-60 '
               alt='Mapa Mundi'
             />

@@ -20,7 +20,7 @@ export default function Entrance() {
         ></img>
       </NavLink>
       <h1 className='pt-4 text-6xl text-indigo-500'>
-        <span className='text-6xl font-bold text-orange-400'>K</span>now{' '}
+        <span className='text-6xl font-bold text-orange-400'>K</span>nowing{' '}
         <span className='text-6xl font-bold text-orange-400'>Y</span>our{' '}
         <span className='text-6xl font-bold text-orange-400'>W</span>orld...get
         in!

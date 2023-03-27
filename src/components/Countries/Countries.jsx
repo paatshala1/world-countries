@@ -1,4 +1,4 @@
-import './Countries.css'
+import Country from '../Country/Country'
 
 import { useEffect, useState, useReducer } from 'react'
 import {
@@ -8,10 +8,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom'
-import { mainLanguages } from '../../constants'
+import './Countries.css'
+import { mainLanguages, emptyCountry } from '../../constants'
 import axios from 'axios'
-
-import Country from '../Country/Country'
 
 export default function Countries(props) {
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
@@ -24,21 +23,6 @@ export default function Countries(props) {
   const options = {
     method: 'GET',
     url: '',
-  }
-  const emptyCountry = {
-    area: '',
-    borders: '',
-    capital: '',
-    code: '',
-    currencies: '',
-    driving: '',
-    flags: '',
-    languages: '',
-    maps: '',
-    name: '',
-    population: '',
-    subregion: '',
-    timezones: '',
   }
 
   let thisId = ''

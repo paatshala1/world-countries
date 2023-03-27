@@ -25,7 +25,7 @@ export default function Entrance() {
         <span className='text-6xl font-bold text-orange-400'>W</span>orld...get
         in!
       </h1>
-      <div className='absolute bottom-3 left-5'>
+      <div className='pt-7'>
         <small className='text-black'>All Rights Reserved</small>
       </div>
     </div>

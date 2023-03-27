@@ -4,6 +4,9 @@ import Entrance from './components/Entrance/Entrance'
 import ErrorPageComponent from './components/Error/ErrorPageComponent'
 import Home from './components/Home/Home'
 import LogInComponent from './components/LogIn/LogInComponent'
+import NavBar from './components/NavBar/NavBar'
+import ByContinent from './components/ByContinent/ByContinent'
+import ByLanguage from './components/ByLanguage/ByLanguage'
 
 const router = createBrowserRouter([
   {
@@ -19,8 +22,27 @@ const router = createBrowserRouter([
         element: <LogInComponent />,
       },
       {
-        path: 'home',
-        element: <Home />,
+        path: '/*',
+        element: <NavBar />,
+        children: [
+          {
+            path: 'home',
+            element: <Home />,
+          },
+
+          {
+            path: 'continent',
+            element: <ByContinent />,
+          },
+          {
+            path: 'language',
+            element: <ByLanguage />,
+          },
+          {
+            path: 'about',
+            element: <ByLanguage />,
+          },
+        ],
       },
     ],
   },

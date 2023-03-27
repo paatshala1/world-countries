@@ -10,15 +10,15 @@ import { MainContextProvider } from './store/main-context'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode name='strict'>
-    <MainContextProvider name='context'>
-      <RouterProvider router={myRouter}>
+    <RouterProvider router={myRouter}>
+      <MainContextProvider name='context'>
         <div
           name='app-container'
           className='grid min-h-screen w-screen place-content-center bg-white opacity-90'
         >
           <App />
         </div>
-      </RouterProvider>
-    </MainContextProvider>
+      </MainContextProvider>
+    </RouterProvider>
   </React.StrictMode>,
 )

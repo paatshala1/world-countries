@@ -16,10 +16,16 @@ export default function Home() {
         <NavLink to='/' />
       ) : (
         <>
-          <div className=' mb-8'>
+          <h1 className='px-10 text-center text-indigo-600'>
+            You can search for any country by name, capital or contry code
+          </h1>
+          <p className='text-center text-indigo-600'>
+            ...even with partial match
+          </p>
+          <div className=' pt-6'>
             <img
               src={mapaMundi}
-              className='my-0 mx-auto  w-96 rounded-full opacity-60 '
+              className='my-0 mx-auto  mt-7 w-96 rounded-full opacity-60'
               alt='Mapa Mundi'
             />
           </div>

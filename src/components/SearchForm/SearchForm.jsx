@@ -22,7 +22,7 @@ export default function SearchForm() {
   }
 
   return (
-    <div className=' my-0 mx-auto mt-12 max-w-md'>
+    <div className=' my-0 mx-auto mt-10 max-w-md'>
       <Formik
         initialValues={{
           countryName: '',
@@ -33,7 +33,7 @@ export default function SearchForm() {
         onSubmit={generalSearchHandler}
         validate={validationHandler}
       >
-        <Form className='container my-0 mx-auto flex flex-col gap-4'>
+        <Form className='mt-30 container my-0 mx-auto flex flex-col gap-4'>
           <ErrorMessage name='general'>{ErrorMessageWrapper}</ErrorMessage>
 
           <Field

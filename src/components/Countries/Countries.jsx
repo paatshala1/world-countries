@@ -96,6 +96,7 @@ export default function Countries(props) {
           timezones: country.timezones,
         }))
         // console.log(requestedCountries[0])
+        requestedCountries.sort()
         setCountriesByCriteria(requestedCountries)
       })
       .catch(err => console.log(err))

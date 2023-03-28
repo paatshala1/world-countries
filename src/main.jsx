@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import myRouter from './Router'
+import { RouterProvider } from 'react-router-dom'
 import App from './App'
 import './index.css'
 import { MainContextProvider } from './store/main-context'
@@ -9,12 +11,14 @@ import { MainContextProvider } from './store/main-context'
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode name='strict'>
     <MainContextProvider name='context'>
-      <div
-        name='app-container'
-        className='grid min-h-screen w-screen place-content-center bg-white opacity-90'
-      >
-        <App />
-      </div>
+      <RouterProvider router={myRouter}>
+        <div
+          name='app-container'
+          className='grid min-h-screen w-screen place-content-center bg-white opacity-90'
+        >
+          <App />
+        </div>
+      </RouterProvider>
     </MainContextProvider>
   </React.StrictMode>,
 )

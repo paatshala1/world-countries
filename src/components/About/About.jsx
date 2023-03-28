@@ -66,7 +66,8 @@ export default function About() {
               <br />
               <p className='pl-3'>
                 Como parte del proyecto y del aprendizaje, se crearon rutas con
-                parámetros y rutas anidadas.
+                parámetros y rutas anidadas, algunas con componentes
+                independientes y otras con componentes anidados.
               </p>
               <br />
               <p className='pl-3'>

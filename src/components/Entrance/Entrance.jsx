@@ -1,7 +1,6 @@
 /* eslint-disable import/no-absolute-path */
 import { useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
-import kywLogo from '/images/logo_world2.png'
 import './Entrance.css'
 import '../../App.css'
 
@@ -11,24 +10,26 @@ export default function Entrance() {
   }, [])
 
   return (
-    <div className=' grid w-screen place-content-center bg-white opacity-90'>
-      <div className=' p-4'>
-        <NavLink to='login'>
-          <img
-            src={kywLogo}
-            className='logo iflix hover:cursor-zoom-in'
-            alt='KYW logo'
-          ></img>
+    <div className=' w-screen place-content-center bg-white opacity-90'>
+      <div className=' my-grid-rows grid p-4 py-8'>
+        <div className='my-grid-title text-center text-indigo-500'>
+          <h1 className='text-6xl font-bold'>
+            Find information about whole world countries
+          </h1>
+          <p>Just click to dive into it</p>
+        </div>
+        <NavLink
+          to='login'
+          className=' my-grid-body my-bg-image-logo logo grid justify-center border-solid border-indigo-500 '
+        >
+          {/* <img src={kywLogo} className='logo ' alt='KYW logo'></img> */}
         </NavLink>
-        <h1 className='pt-4 text-6xl text-indigo-500'>
+        <h2 className='my-grid-footer pt-4 text-center text-6xl text-indigo-500'>
           <span className='text-6xl font-bold text-orange-400'>K</span>nowing{' '}
           <span className='text-6xl font-bold text-orange-400'>Y</span>our{' '}
           <span className='text-6xl font-bold text-orange-400'>W</span>
           orld...get in!
-        </h1>
-        <div className='pt-4'>
-          <small className='text-black'>All Rights Reserved</small>
-        </div>
+        </h2>
       </div>
     </div>
   )

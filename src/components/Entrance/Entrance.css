@@ -11,3 +11,28 @@
   -webkit-filter: drop-shadow(0 0 2em #e18b3a);
   filter: drop-shadow(0 0 2em #e18b3a);
 }
+
+.my-grid-rows {
+  grid-template-rows: 15vh 68vh 10vh;
+}
+
+.my-grid-title {
+  grid-row: 1 / 2;
+  margin-top: 3rem;
+}
+
+.my-grid-body {
+  grid-row: 2 / 3;
+  margin: 4rem;
+}
+
+.my-grid-footer {
+  grid-row: 3 / 4;
+}
+
+.my-bg-image-logo {
+  background-image: url('/images/logo_world2.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 50%;
+}

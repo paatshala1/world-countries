@@ -98,10 +98,10 @@ export default function Countries(props) {
         // console.log(requestedCountries[0])
 
         requestedCountries.sort(function (a, b) {
-          if (a.name < b.name) {
+          if (a.name.common < b.name.common) {
             return -1
           }
-          if (a.name > b.name) {
+          if (a.name.common > b.name.common) {
             return 1
           }
           return 0

@@ -41,11 +41,6 @@ export default function NavBar() {
                 orld
               </p>
             </div>
-            {/* <pre className=''>
-              World
-              <br />
-              Countries
-            </pre> */}
           </div>
         ) : null}
 

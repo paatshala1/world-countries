@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom'
 import './Countries.css'
 import { mainLanguages, emptyCountry } from '../../constants'
-import axios from 'axios'
+import { httpCountriesRequest } from '../../../httpRequests'
 
 export default function Countries(props) {
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
@@ -26,10 +26,9 @@ export default function Countries(props) {
   }
 
   let thisId = ''
-
   let myURL = ''
-
   let countriesBy = ''
+  let requestedCountries = []
 
   if (pathname.includes('cont')) {
     countriesBy = <h3>Countries of: {criteria.toUpperCase()}</h3>
@@ -76,44 +75,47 @@ export default function Countries(props) {
     }
   }
 
-  function uploadCountries() {
-    axios
-      .request(options)
-      .then(res => {
-        const requestedCountries = res.data.map(country => ({
-          area: country.area,
-          borders: country.borders,
-          capital: country.capital,
-          code: country.cioc,
-          currencies: country.currencies,
-          driving: country.car.side,
-          flags: country.flags,
-          languages: country.languages,
-          maps: country.maps,
-          name: country.name,
-          population: country.population,
-          subregion: country.subregion,
-          timezones: country.timezones,
-        }))
-        // console.log(requestedCountries[0])
+  function extractData(data) {
+    requestedCountries = data.map(country => ({
+      area: country.area,
+      borders: country.borders,
+      capital: country.capital,
+      code: country.cioc,
+      currencies: country.currencies,
+      driving: country.car.side,
+      flags: country.flags,
+      languages: country.languages,
+      maps: country.maps,
+      name: country.name,
+      population: country.population,
+      subregion: country.subregion,
+      timezones: country.timezones,
+    }))
+  }
 
-        requestedCountries.sort(function (a, b) {
-          if (a.name.common < b.name.common) {
-            return -1
-          }
-          if (a.name.common > b.name.common) {
-            return 1
-          }
-          return 0
-        })
+  function sortCountries(countries) {
+    countries.sort(function (a, b) {
+      if (a.name.common < b.name.common) {
+        return -1
+      }
+      if (a.name.common > b.name.common) {
+        return 1
+      }
+      return 0
+    })
+  }
 
-        setCountriesByCriteria(requestedCountries)
-      })
-      .catch(err => console.log(err))
+  async function uploadCountries(options) {
+    const data = await httpCountriesRequest(options)
+    extractData(data)
+    sortCountries(requestedCountries)
+    setCountriesByCriteria(requestedCountries)
     dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
   }
 
-  useEffect(uploadCountries, [])
+  useEffect(() => {
+    uploadCountries(options)
+  }, [])
 
   const [selectedCountry, dispatchSelectedCountry] = useReducer(
     selectedCountryReducer,

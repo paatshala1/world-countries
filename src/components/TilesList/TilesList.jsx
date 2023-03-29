@@ -3,23 +3,8 @@
 import Tile from '../Tile/Tile'
 import './TilesList.css'
 import useToggle from '../../hooks/useToggle'
-import { httpCountries, httpErrorHandler } from '../../../httpRequests'
 
 export default function TilesList({ elements, section, sample }) {
-  // const data = localStorage.getItem('toggleStatus')
-  // const toggleStatus = JSON.parse(data)
-
-  // let isActive
-  // let labels
-  // let turnOnOff
-
-  // if (toggleStatus) {
-  //   ;({ isActive, labels } = toggleStatus)
-  //   ;({ turnOnOff } = useToggle('', ''))
-  // } else {
-  //   ;({ isActive, labels, turnOnOff } = useToggle('View less', 'View all'))
-  // }
-
   const { isActive, labels, turnOnOff } = useToggle('View less', 'View all')
 
   const elementsToRender = isActive

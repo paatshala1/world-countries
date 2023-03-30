@@ -13,19 +13,20 @@ import About from './components/About/About'
 const router = createBrowserRouter([
   {
     element: <App />,
+    errorElement: <ErrorPageComponent />,
     children: [
       {
         path: '/',
         element: <Entrance />,
-        errorElement: <ErrorPageComponent />,
       },
       {
         path: 'login',
         element: <LogInComponent />,
       },
       {
-        path: '/*',
+        path: 'app/',
         element: <NavBar />,
+        errorElement: <ErrorPageComponent />,
         children: [
           {
             path: 'home',

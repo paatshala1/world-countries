@@ -1,5 +1,4 @@
-import Country from '../Country/Country'
-
+import { httpCountriesRequest } from '../../services/httpRequests'
 import { useEffect, useState, useReducer } from 'react'
 import {
   useParams,
@@ -7,13 +6,17 @@ import {
   NavLink,
   Routes,
   Route,
+  useNavigate,
 } from 'react-router-dom'
-import './Countries.css'
+import Country from '../Country/Country'
+import ErrorPageComponent from '../Error/ErrorPageComponent'
 import { mainLanguages, emptyCountry } from '../../constants'
-import { httpCountriesRequest } from '../../../httpRequests'
+import './Countries.css'
 
 export default function Countries(props) {
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
+  const [responseError, setResponseError] = useState({})
+  const navigate = useNavigate()
 
   const params = useParams()
   const { pathname } = useLocation()
@@ -45,14 +48,6 @@ export default function Countries(props) {
 
   options.url = baseURL + myURL
 
-  function selectionHandler(event) {
-    thisId = parseInt(event.target.dataset.identifier)
-    dispatchSelectedCountry({
-      type: 'COUNTRY SELECTED',
-      value: countriesByCriteria[thisId],
-    })
-  }
-
   function selectedCountryReducer(state, action) {
     let storedValue
     switch (action.type) {
@@ -73,6 +68,14 @@ export default function Countries(props) {
       default:
         return emptyCountry
     }
+  }
+
+  function selectionHandler(event) {
+    thisId = parseInt(event.target.dataset.identifier)
+    dispatchSelectedCountry({
+      type: 'COUNTRY SELECTED',
+      value: countriesByCriteria[thisId],
+    })
   }
 
   function extractData(data) {
@@ -106,11 +109,19 @@ export default function Countries(props) {
   }
 
   async function uploadCountries(options) {
-    const data = await httpCountriesRequest(options)
-    extractData(data)
-    sortCountries(requestedCountries)
-    setCountriesByCriteria(requestedCountries)
-    dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
+    const response = await httpCountriesRequest(options)
+    console.log(response)
+
+    if (!response.data) {
+      setResponseError(response)
+      navigate(-1)
+      console.log('Turned back due error!')
+    } else {
+      extractData(response.data)
+      sortCountries(requestedCountries)
+      setCountriesByCriteria(requestedCountries)
+      dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
+    }
   }
 
   useEffect(() => {
@@ -124,31 +135,38 @@ export default function Countries(props) {
   // -----------------------------------RETURN-------------------------------------
 
   return (
-    <div className='result'>
-      <div className='result-title'>{countriesBy}</div>
-      <ul className='result-tiles'>
-        {countriesByCriteria.map((country, index) => {
-          const myIndex = index.toString()
-          return (
-            <li key={index}>
-              <NavLink to={country.name.common}>
-                <button
-                  onClick={selectionHandler}
-                  data-identifier={myIndex}
-                >{` ${country.name.common} `}</button>
-              </NavLink>
-            </li>
-          )
-        })}
-      </ul>
-      {selectedCountry && (
-        <Routes>
-          <Route
-            path='/:country'
-            element={<Country country={selectedCountry} />}
-          />
-        </Routes>
+    <>
+      {responseError.type === 'ERROR' && (
+        <ErrorPageComponent data={responseError} />
       )}
-    </div>
+      {!responseError.type && (
+        <div className='result'>
+          <div className='result-title'>{countriesBy}</div>
+          <ul className='result-tiles'>
+            {countriesByCriteria.map((country, index) => {
+              const myIndex = index.toString()
+              return (
+                <li key={index}>
+                  <NavLink to={country.name.common}>
+                    <button
+                      onClick={selectionHandler}
+                      data-identifier={myIndex}
+                    >{` ${country.name.common} `}</button>
+                  </NavLink>
+                </li>
+              )
+            })}
+          </ul>
+          {selectedCountry && (
+            <Routes>
+              <Route
+                path='/:country'
+                element={<Country country={selectedCountry} />}
+              />
+            </Routes>
+          )}
+        </div>
+      )}
+    </>
   )
 }

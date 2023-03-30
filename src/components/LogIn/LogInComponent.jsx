@@ -92,7 +92,7 @@ export default function LogInComponent() {
                 </a>
               </div>
               <div>
-                <NavLink to='/home' onClick={ctx.onLogIn}>
+                <NavLink to='/app/home' onClick={ctx.onLogIn}>
                   <ButtonComponent label='Login' type='button' />
                 </NavLink>
               </div>

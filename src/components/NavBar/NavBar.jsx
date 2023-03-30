@@ -20,7 +20,7 @@ export default function NavBar() {
             name='menu-head-container'
             className='my-flex-grow-4 flex flex-row justify-start'
           >
-            <NavLink to='home'>
+            <NavLink to='/app/home'>
               <img
                 src={kywLogo}
                 className='logo my-max-w-150 w-2/3'
@@ -56,7 +56,7 @@ export default function NavBar() {
                     className={({ isActive }) =>
                       isActive ? 'text-3xl text-orange-400 ' : ''
                     }
-                    to={`/${option.path}`}
+                    to={`/app/${option.path}`}
                   >
                     {option.label}
                   </NavLink>

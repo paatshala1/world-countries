@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
+import axiosInterceptor from './utilities/axios.interceptor'
 
 function App() {
   return (

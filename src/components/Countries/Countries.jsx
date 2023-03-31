@@ -1,19 +1,23 @@
-import Country from '../Country/Country'
-
-import { useEffect, useState, useReducer } from 'react'
+import { httpCountriesRequest } from '../../services/httpRequests'
+import { useEffect, useState, useReducer, useContext } from 'react'
+import MainContext from '../../store/main-context'
 import {
   useParams,
   useLocation,
   NavLink,
   Routes,
   Route,
+  useNavigate,
 } from 'react-router-dom'
-import './Countries.css'
+import Country from '../Country/Country'
 import { mainLanguages, emptyCountry } from '../../constants'
-import axios from 'axios'
+import './Countries.css'
 
 export default function Countries(props) {
+  const ctx = useContext(MainContext)
+
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
+  const navigate = useNavigate()
 
   const params = useParams()
   const { pathname } = useLocation()
@@ -26,10 +30,9 @@ export default function Countries(props) {
   }
 
   let thisId = ''
-
   let myURL = ''
-
   let countriesBy = ''
+  let requestedCountries = []
 
   if (pathname.includes('cont')) {
     countriesBy = <h3>Countries of: {criteria.toUpperCase()}</h3>
@@ -45,14 +48,6 @@ export default function Countries(props) {
   }
 
   options.url = baseURL + myURL
-
-  function selectionHandler(event) {
-    thisId = parseInt(event.target.dataset.identifier)
-    dispatchSelectedCountry({
-      type: 'COUNTRY SELECTED',
-      value: countriesByCriteria[thisId],
-    })
-  }
 
   function selectedCountryReducer(state, action) {
     let storedValue
@@ -76,44 +71,62 @@ export default function Countries(props) {
     }
   }
 
-  function uploadCountries() {
-    axios
-      .request(options)
-      .then(res => {
-        const requestedCountries = res.data.map(country => ({
-          area: country.area,
-          borders: country.borders,
-          capital: country.capital,
-          code: country.cioc,
-          currencies: country.currencies,
-          driving: country.car.side,
-          flags: country.flags,
-          languages: country.languages,
-          maps: country.maps,
-          name: country.name,
-          population: country.population,
-          subregion: country.subregion,
-          timezones: country.timezones,
-        }))
-        // console.log(requestedCountries[0])
-
-        requestedCountries.sort(function (a, b) {
-          if (a.name.common < b.name.common) {
-            return -1
-          }
-          if (a.name.common > b.name.common) {
-            return 1
-          }
-          return 0
-        })
-
-        setCountriesByCriteria(requestedCountries)
-      })
-      .catch(err => console.log(err))
-    dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
+  function selectionHandler(event) {
+    thisId = parseInt(event.target.dataset.identifier)
+    dispatchSelectedCountry({
+      type: 'COUNTRY SELECTED',
+      value: countriesByCriteria[thisId],
+    })
   }
 
-  useEffect(uploadCountries, [])
+  function extractData(data) {
+    requestedCountries = data.map(country => ({
+      area: country.area,
+      borders: country.borders,
+      capital: country.capital,
+      code: country.cioc,
+      currencies: country.currencies,
+      driving: country.car.side,
+      flags: country.flags,
+      languages: country.languages,
+      maps: country.maps,
+      name: country.name,
+      population: country.population,
+      subregion: country.subregion,
+      timezones: country.timezones,
+    }))
+  }
+
+  function sortCountries(countries) {
+    countries.sort(function (a, b) {
+      if (a.name.common < b.name.common) {
+        return -1
+      }
+      if (a.name.common > b.name.common) {
+        return 1
+      }
+      return 0
+    })
+  }
+
+  async function uploadCountries(options) {
+    const response = await httpCountriesRequest(options)
+    console.log(response)
+
+    if (!response.data) {
+      ctx.onSetHttpError(response)
+      navigate('/error')
+    } else {
+      extractData(response.data)
+      sortCountries(requestedCountries)
+      setCountriesByCriteria(requestedCountries)
+      dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
+    }
+  }
+
+  useEffect(() => {
+    uploadCountries(options)
+  }, [])
 
   const [selectedCountry, dispatchSelectedCountry] = useReducer(
     selectedCountryReducer,
@@ -122,31 +135,38 @@ export default function Countries(props) {
   // -----------------------------------RETURN-------------------------------------
 
   return (
-    <div className='result'>
-      <div className='result-title'>{countriesBy}</div>
-      <ul className='result-tiles'>
-        {countriesByCriteria.map((country, index) => {
-          const myIndex = index.toString()
-          return (
-            <li key={index}>
-              <NavLink to={country.name.common}>
-                <button
-                  onClick={selectionHandler}
-                  data-identifier={myIndex}
-                >{` ${country.name.common} `}</button>
-              </NavLink>
-            </li>
-          )
-        })}
-      </ul>
-      {selectedCountry && (
-        <Routes>
-          <Route
-            path='/:country'
-            element={<Country country={selectedCountry} />}
-          />
-        </Routes>
-      )}
-    </div>
+    <>
+      {/* {responseError.type === 'ERROR' && (
+        <ErrorPageComponent data={responseError} />
+      )} */}
+      {/* {!responseError.type && ( */}
+      <div className='result'>
+        <div className='result-title'>{countriesBy}</div>
+        <ul className='result-tiles'>
+          {countriesByCriteria.map((country, index) => {
+            const myIndex = index.toString()
+            return (
+              <li key={index}>
+                <NavLink to={country.name.common}>
+                  <button
+                    onClick={selectionHandler}
+                    data-identifier={myIndex}
+                  >{` ${country.name.common} `}</button>
+                </NavLink>
+              </li>
+            )
+          })}
+        </ul>
+        {selectedCountry && (
+          <Routes>
+            <Route
+              path='/:country'
+              element={<Country country={selectedCountry} />}
+            />
+          </Routes>
+        )}
+      </div>
+      {/* )} */}
+    </>
   )
 }

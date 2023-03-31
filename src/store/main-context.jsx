@@ -4,10 +4,14 @@ const MainContext = createContext({
   isLoggedIn: false,
   onLogIn: () => {},
   onLogOut: () => {},
+  currentError: {},
+  onSetHttpError: () => {},
+  onClearHttpError: () => {},
 })
 
 export const MainContextProvider = props => {
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [currentError, setCurrentError] = useState(null)
 
   useEffect(() => {
     setIsLoggedIn(false)
@@ -24,10 +28,21 @@ export const MainContextProvider = props => {
     localStorage.setItem('is-logged', 'true')
   }
 
+  function onSetHttpErrorHandler(error) {
+    setCurrentError(error)
+  }
+
+  function onClearHttpErrorHandler() {
+    setCurrentError(null)
+  }
+
   const valueContext = {
     isLoggedIn,
     onLogIn: onLogInHandler,
     onLogOut: onLogOutHandler,
+    currentError,
+    onSetHttpError: onSetHttpErrorHandler,
+    onClearHttpError: onClearHttpErrorHandler,
   }
 
   return (

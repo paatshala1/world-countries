@@ -1,5 +1,6 @@
 import { httpCountriesRequest } from '../../services/httpRequests'
-import { useEffect, useState, useReducer } from 'react'
+import { useEffect, useState, useReducer, useContext } from 'react'
+import MainContext from '../../store/main-context'
 import {
   useParams,
   useLocation,
@@ -14,6 +15,8 @@ import { mainLanguages, emptyCountry } from '../../constants'
 import './Countries.css'
 
 export default function Countries(props) {
+  const ctx = useContext(MainContext)
+
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
   const [responseError, setResponseError] = useState({})
   const navigate = useNavigate()
@@ -22,7 +25,7 @@ export default function Countries(props) {
   const { pathname } = useLocation()
 
   const criteria = params.sel
-  const baseURL = 'https://restcountries.com/v3.1'
+  const baseURL = 'https://restcountries.com/v3.1l'
   const options = {
     method: 'GET',
     url: '',
@@ -113,9 +116,8 @@ export default function Countries(props) {
     console.log(response)
 
     if (!response.data) {
-      setResponseError(response)
-      navigate(-1)
-      console.log('Turned back due error!')
+      ctx.onSetHttpError(response)
+      navigate('/error')
     } else {
       extractData(response.data)
       sortCountries(requestedCountries)

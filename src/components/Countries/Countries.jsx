@@ -10,7 +10,6 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import Country from '../Country/Country'
-import ErrorPageComponent from '../Error/ErrorPageComponent'
 import { mainLanguages, emptyCountry } from '../../constants'
 import './Countries.css'
 
@@ -18,14 +17,13 @@ export default function Countries(props) {
   const ctx = useContext(MainContext)
 
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
-  const [responseError, setResponseError] = useState({})
   const navigate = useNavigate()
 
   const params = useParams()
   const { pathname } = useLocation()
 
   const criteria = params.sel
-  const baseURL = 'https://restcountries.com/v3.1l'
+  const baseURL = 'https://restcountries.com/v3.1'
   const options = {
     method: 'GET',
     url: '',
@@ -138,37 +136,37 @@ export default function Countries(props) {
 
   return (
     <>
-      {responseError.type === 'ERROR' && (
+      {/* {responseError.type === 'ERROR' && (
         <ErrorPageComponent data={responseError} />
-      )}
-      {!responseError.type && (
-        <div className='result'>
-          <div className='result-title'>{countriesBy}</div>
-          <ul className='result-tiles'>
-            {countriesByCriteria.map((country, index) => {
-              const myIndex = index.toString()
-              return (
-                <li key={index}>
-                  <NavLink to={country.name.common}>
-                    <button
-                      onClick={selectionHandler}
-                      data-identifier={myIndex}
-                    >{` ${country.name.common} `}</button>
-                  </NavLink>
-                </li>
-              )
-            })}
-          </ul>
-          {selectedCountry && (
-            <Routes>
-              <Route
-                path='/:country'
-                element={<Country country={selectedCountry} />}
-              />
-            </Routes>
-          )}
-        </div>
-      )}
+      )} */}
+      {/* {!responseError.type && ( */}
+      <div className='result'>
+        <div className='result-title'>{countriesBy}</div>
+        <ul className='result-tiles'>
+          {countriesByCriteria.map((country, index) => {
+            const myIndex = index.toString()
+            return (
+              <li key={index}>
+                <NavLink to={country.name.common}>
+                  <button
+                    onClick={selectionHandler}
+                    data-identifier={myIndex}
+                  >{` ${country.name.common} `}</button>
+                </NavLink>
+              </li>
+            )
+          })}
+        </ul>
+        {selectedCountry && (
+          <Routes>
+            <Route
+              path='/:country'
+              element={<Country country={selectedCountry} />}
+            />
+          </Routes>
+        )}
+      </div>
+      {/* )} */}
     </>
   )
 }

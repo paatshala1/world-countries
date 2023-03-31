@@ -1,13 +1,17 @@
 import LogoComponent from '../UI/LogoComponent/LogoComponent'
 import ButtonComponent from '../UI/Button/ButtonComponent'
-import { useForm } from 'react-hook-form'
+import { useForm, useFormState } from 'react-hook-form'
 
 export default function SearcherComponent() {
   const {
+    control,
     register,
     handleSubmit,
+    getFieldState,
+    trigger,
     watch,
-    formState: { errors },
+    formState: { errors, isDirty, dirtyFields },
+    setValue,
   } = useForm({
     defaultValues: {
       country: '',
@@ -16,15 +20,25 @@ export default function SearcherComponent() {
     },
   })
 
-  // console.log(errors)
-  console.log(watch('country'))
+  const { touchedFields } = useFormState({ control })
 
-  function handleSubmitHandler(data) {
+  // console.log(errors)
+  // console.log(watch('country'))
+
+  console.log(touchedFields)
+  console.log(dirtyFields)
+  console.log(getFieldState('country').invalid)
+
+  function onSubmitHandler(data) {
     console.log(data)
   }
 
+  function setFormatError(erorrs) {
+    console.log(errors)
+  }
+
   return (
-    <div className='grid w-2/5 grid-cols-2 shadow-md shadow-stone-200'>
+    <div className='grid max-w-2xl grid-cols-2 shadow-md shadow-stone-200'>
       <section className=' bg-indigo-500 p-4'>
         <div className=' mb-6 grid content-center'>
           <LogoComponent />
@@ -44,13 +58,15 @@ export default function SearcherComponent() {
           </p>
         </div>
       </section>
+
       <form
-        onSubmit={handleSubmit(handleSubmitHandler)}
-        className=' grid gap-2 bg-zinc-50 p-4'
+        onSubmit={handleSubmit(onSubmitHandler)}
+        className=' grid gap-2 bg-zinc-50 p-8'
       >
         <p className=' text-indigo-600'>
-          Type at least 3 characters in any field to help you.
+          Type at least 3 characters in any field to help you searching.
         </p>
+
         <input
           type='text'
           name='country'
@@ -59,10 +75,18 @@ export default function SearcherComponent() {
           placeholder='  Country'
           {...register('country', {
             required: 'You must type a Country',
-            minLength: { value: 3, message: 'Min lenth is three characters' },
+            minLength: { value: 3, message: 'Country error' },
           })}
         />
-        <p className=' text-orange-600'>{errors.country?.message}</p>
+        {touchedFields.country && errors?.country?.message && (
+          <p className=' pl-2 text-xs text-red-700'>
+            {errors?.country?.message}
+          </p>
+        )}
+        {touchedFields.country && (
+          <p className=' pl-2 text-xs text-red-700'>Field touched!</p>
+        )}
+
         <input
           type='text'
           name='capital'
@@ -71,17 +95,35 @@ export default function SearcherComponent() {
           placeholder='  Capital'
           {...register('capital', {
             required: 'You must type a capital',
-            minLength: { value: 3, message: 'Min leth for Capital is 3' },
+            minLength: { value: 3, message: {} },
           })}
         />
+        {touchedFields.capital && errors?.capital?.message && (
+          <p className=' pl-2 text-xs text-red-700'>
+            {errors?.capital?.message}
+          </p>
+        )}
+        {touchedFields.capital && (
+          <p className=' pl-2 text-xs text-red-700'>Field touched!</p>
+        )}
+
         <input
           type='text'
           name='phoneCode'
           id=''
           className='rounded-md bg-indigo-200 pl-2 text-indigo-600'
           placeholder='Phone code'
-          {...register('phoneCode', { minLength: 3 })}
+          {...register('phoneCode', { minLength: 3, pattern: '/[0-9]+/i' })}
         />
+        {touchedFields.phoneCode && errors?.phoneCode?.message && (
+          <p className=' pl-2 text-xs text-red-700'>
+            {errors?.phoneCode?.message}
+          </p>
+        )}
+        {touchedFields.phoneCode && (
+          <p className=' pl-2 text-xs text-red-700'>Field touched!</p>
+        )}
+
         <div className='mt-2 grid grid-cols-3 content-center'>
           <div className=' col-start-1 col-end-4'>
             <ButtonComponent label='Search' />

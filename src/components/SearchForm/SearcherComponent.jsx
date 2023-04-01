@@ -95,12 +95,12 @@ export default function SearcherComponent() {
               value='name'
               id='country'
               className=' my-radio-centered relative h-5 w-5'
-              {...register('country', {
+              {...register('criteria', {
                 required: { value: true, message: 'You must select an option' },
               })}
             />
           </div>
-          <label htmlFor='country' className=' text-2xl text-indigo-600 '>
+          <label htmlFor='criteria' className=' text-2xl text-indigo-600 '>
             Country
           </label>
         </div>
@@ -113,7 +113,7 @@ export default function SearcherComponent() {
               value='capital'
               id='capital'
               className=' my-radio-centered relative h-5 w-5'
-              {...register('capital', {
+              {...register('criteria', {
                 required: { value: true, message: 'You must select an option' },
               })}
             />
@@ -138,14 +138,9 @@ export default function SearcherComponent() {
             {errors?.searcher.message}
           </p>
         )}
-        {errors?.country && (
+        {errors?.criteria && (
           <p className=' pl-2 text-xs text-red-700'>
-            {errors?.country?.message}
-          </p>
-        )}
-        {errors?.capital && (
-          <p className=' pl-2 text-xs text-red-700'>
-            {errors?.capital?.message}
+            {errors?.criteria?.message}
           </p>
         )}
 

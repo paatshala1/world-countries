@@ -19,8 +19,17 @@ async function httpCountriesRequest(options) {
   }
 }
 
+function httpSearchRequest(options) {
+  console.log('Request ready to be sent')
+}
+
 function httpErrorHandler(err) {
   console.log(err.toJSON)
 }
 
-export { httpCountryRequest, httpCountriesRequest, httpErrorHandler }
+export {
+  httpCountryRequest,
+  httpCountriesRequest,
+  httpErrorHandler,
+  httpSearchRequest,
+}

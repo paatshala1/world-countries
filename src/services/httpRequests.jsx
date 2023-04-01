@@ -11,7 +11,7 @@ async function httpCountriesRequest(options) {
 
   try {
     const response = await axios.request(options)
-    console.log(`ANSWER: ${response.data}`)
+    // console.log(`ANSWER: ${response.data}`)
     return response
   } catch (err) {
     console.log(err)

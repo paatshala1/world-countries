@@ -1,11 +1,14 @@
 import { httpCountriesRequest } from '../../services/httpRequests'
 import LogoComponent from '../UI/LogoComponent/LogoComponent'
 import ButtonComponent from '../UI/Button/ButtonComponent'
+import MainContext from '../../store/main-context'
 import { useForm, useFormState } from 'react-hook-form'
-import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
 
 export default function SearcherComponent() {
-  let optionSelected = ''
+  const ctx = useContext(MainContext)
+  const navigate = useNavigate()
   const baseURL = 'https://restcountries.com/v3.1/'
   const options = {
     method: 'GET',
@@ -29,28 +32,30 @@ export default function SearcherComponent() {
     },
   })
 
-  // const [countryClicked, setCountryClicked] = useState()
-
   const { touchedFields } = useFormState({ control })
 
-  console.log(errors)
-  // console.log(watch('searcher'))
-
+  // console.log(errors)
+  // console.log(watch('criteria'))
   // console.log(touchedFields)
   // console.log(dirtyFields)
   // console.log(getFieldState('country').invalid)
 
-  function onSubmitHandler(data) {
-    console.log(data)
-    // optionSelected = event.target.value
-    const urlToRequest = baseURL + data.search + '/' + data.searcher.trim()
+  async function onSubmitHandler(data) {
+    const urlToRequest = baseURL + data.criteria + '/' + data.searcher.trim()
     options.url = urlToRequest
-    console.log(options)
-  }
 
-  // function selectionHandler(event) {
-  //   console.log(options.url)
-  // }
+    const response = await httpCountriesRequest(options)
+    if (!response.data) {
+      ctx.onSetHttpError(response)
+      navigate('/error')
+    } else {
+      console.log(response)
+      // extractData(response.data)
+      // sortCountries(requestedCountries)
+      // setCountriesByCriteria(requestedCountries)
+      // dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
+    }
+  }
 
   return (
     <div className='grid max-w-2xl grid-cols-2 shadow-md shadow-stone-200'>

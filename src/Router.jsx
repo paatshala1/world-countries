@@ -9,6 +9,7 @@ import ByLanguage from './components/ByLanguage/ByLanguage'
 import Countries from './components/Countries/Countries'
 import ErrorPageComponent from './components/Error/ErrorPageComponent'
 import About from './components/About/About'
+import SearcherComponent from './components/SearchForm/SearcherComponent'
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
           {
             path: 'language/:sel/*',
             element: <Countries />,
+          },
+          {
+            path: 'test',
+            element: <SearcherComponent />,
           },
         ],
       },

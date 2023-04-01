@@ -32,7 +32,11 @@ export default function Home() {
           </>
         )}
       </section>
-      {selectedCountry !== null && <Country country={selectedCountry} />}
+      {selectedCountry !== null && (
+        <div>
+          <Country country={selectedCountry} />
+        </div>
+      )}
     </>
   )
 }

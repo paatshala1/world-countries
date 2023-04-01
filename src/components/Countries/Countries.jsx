@@ -136,10 +136,6 @@ export default function Countries(props) {
 
   return (
     <>
-      {/* {responseError.type === 'ERROR' && (
-        <ErrorPageComponent data={responseError} />
-      )} */}
-      {/* {!responseError.type && ( */}
       <div className='result'>
         <div className='result-title'>{countriesBy}</div>
         <ul className='result-tiles'>

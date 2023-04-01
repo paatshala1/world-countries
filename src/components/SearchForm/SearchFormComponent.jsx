@@ -3,13 +3,17 @@ import LogoComponent from '../UI/LogoComponent/LogoComponent'
 import ButtonComponent from '../UI/Button/ButtonComponent'
 import MainContext from '../../store/main-context'
 import { useForm, useFormState } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { useContext, useState } from 'react'
+import { extractData, sortCountries } from '../../services/dataPreprocessing'
 
-export default function SearchFormComponent() {
+export default function SearchFormComponent(props) {
+  let requestedCountries = []
+
   const [notResults, setNotResults] = useState(false)
+  const [countriesByCriteria, setCountriesByCriteria] = useState([])
+
   const ctx = useContext(MainContext)
-  const navigate = useNavigate()
   const baseURL = 'https://restcountries.com/v3.1/'
   const options = {
     method: 'GET',
@@ -43,6 +47,8 @@ export default function SearchFormComponent() {
   // console.log(getFieldState('country').invalid)
 
   async function onSubmitHandler(data) {
+    if (touchedFields.searcher) props.selectedCountry(null)
+
     const urlToRequest = baseURL + data.criteria + '/' + data.searcher.trim()
     options.url = urlToRequest
     console.log(options)
@@ -53,13 +59,24 @@ export default function SearchFormComponent() {
       // navigate('/error')
     } else {
       console.log(response)
-      setNotResults(false)
       reset()
+      requestedCountries = extractData(response.data)
+      sortCountries(requestedCountries)
+      setCountriesByCriteria(requestedCountries)
+      setNotResults(false)
       // extractData(response.data)
       // sortCountries(requestedCountries)
       // setCountriesByCriteria(requestedCountries)
       // dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
     }
+  }
+
+  function selectionHandler(event) {
+    const thisId = parseInt(event.target.dataset.identifier)
+    console.log('Clicked!')
+    console.log(thisId)
+    const country = countriesByCriteria[thisId]
+    props.selectedCountry(country)
   }
 
   return (
@@ -70,16 +87,19 @@ export default function SearchFormComponent() {
             <LogoComponent />
           </div>
           <div>
-            <p className=' mb-1'>
+            <p className=' mb-2'>
               There is several options to search for any country.
             </p>
-            <p className=' mb-1'>
+            <p className=' mb-2'>
               It is possible to search for its name or capital, to do that just
               go to the right-hand section.
             </p>
-            <p className=' mb-1'>
+            <p className=' mb-2'>
               You can also navigate through the menu at top of page to start
               your travel...it is a great idea to discover new countries.
+            </p>
+            <p className=' mb-2'>
+              -- Note: All seaches are preformed in english.
             </p>
           </div>
         </section>
@@ -93,7 +113,7 @@ export default function SearchFormComponent() {
               Select a criteria to search for.
             </li>
             <li className=' list-disc text-xs text-indigo-600'>
-              Type at least 3 characters.
+              Type at least 4 characters.
             </li>
             <li className=' list-disc text-xs text-indigo-600'>
               Click search.
@@ -149,7 +169,7 @@ export default function SearchFormComponent() {
             className='rounded-md bg-indigo-200 pl-2 text-indigo-600'
             {...register('searcher', {
               required: 'You must type any criteria to search for',
-              minLength: { value: 3, message: 'Min length 3' },
+              minLength: { value: 4, message: 'Min length 4' },
             })}
           />
           {errors.searcher && (
@@ -170,12 +190,36 @@ export default function SearchFormComponent() {
           </div>
         </form>
         {notResults && (
-          <div className=' p-4'>
-            <p className='  bg-orange-100 p-4 text-lg text-indigo-600 shadow-md'>
+          <div className=' p-4 '>
+            <p className=' bg-orange-100  p-4 text-lg text-indigo-600 shadow-md'>
               There is no results for these criterias, please try another
               combination...or maybe a smaller text.
             </p>
           </div>
+        )}
+
+        {!notResults && (
+          <ul className=' grid grid-cols-2 flex-col content-center gap-4 p-4 shadow-md'>
+            {countriesByCriteria.map((country, index) => {
+              const myIndex = index.toString()
+              return (
+                <li
+                  key={index}
+                  className=' grid content-center self-stretch text-lg text-indigo-600'
+                >
+                  <NavLink className=''>
+                    <button
+                      onClick={selectionHandler}
+                      data-identifier={myIndex}
+                      className=' border-2 border-orange-400 bg-transparent text-orange-600 transition-colors hover:translate-x-1 hover:translate-y-1 hover:bg-orange-100 active:bg-orange-100'
+                    >
+                      {country.name.common}
+                    </button>
+                  </NavLink>
+                </li>
+              )
+            })}
+          </ul>
         )}
       </div>
     </>

@@ -148,10 +148,9 @@ export default function Countries(props) {
             return (
               <li key={index}>
                 <NavLink to={country.name.common}>
-                  <button
-                    onClick={selectionHandler}
-                    data-identifier={myIndex}
-                  >{` ${country.name.common} `}</button>
+                  <button onClick={selectionHandler} data-identifier={myIndex}>
+                    {country.name.common}
+                  </button>
                 </NavLink>
               </li>
             )

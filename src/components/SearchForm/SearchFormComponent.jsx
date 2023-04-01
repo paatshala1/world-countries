@@ -6,7 +6,7 @@ import { useForm, useFormState } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 
-export default function SearcherComponent() {
+export default function SearchFormComponent() {
   const ctx = useContext(MainContext)
   const navigate = useNavigate()
   const baseURL = 'https://restcountries.com/v3.1/'
@@ -19,6 +19,7 @@ export default function SearcherComponent() {
     control,
     register,
     handleSubmit,
+    reset,
     getFieldState,
     trigger,
     watch,
@@ -43,7 +44,7 @@ export default function SearcherComponent() {
   async function onSubmitHandler(data) {
     const urlToRequest = baseURL + data.criteria + '/' + data.searcher.trim()
     options.url = urlToRequest
-
+    console.log(options)
     const response = await httpCountriesRequest(options)
     if (!response.data) {
       ctx.onSetHttpError(response)
@@ -58,7 +59,7 @@ export default function SearcherComponent() {
   }
 
   return (
-    <div className='grid max-w-2xl grid-cols-2 shadow-md shadow-stone-200'>
+    <div className='col-start-2 col-end-4 mt-8 grid max-w-2xl  grid-cols-2 justify-self-center shadow-md shadow-stone-200'>
       <section className=' bg-indigo-500 p-4'>
         <div className=' mb-6 grid content-center'>
           <LogoComponent />

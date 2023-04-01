@@ -1,5 +1,5 @@
 /* eslint-disable import/no-absolute-path */
-import SearchForm from '../SearchForm/SearchForm'
+import SearchFormComponent from '../SearchForm/SearchFormComponent'
 import { useEffect } from 'react'
 import mapaMundi from '/images/mapaMundiAlphaChannel.png'
 import { NavLink } from 'react-router-dom'
@@ -11,25 +11,25 @@ export default function Home() {
   const logStatus = JSON.parse(data)
 
   return (
-    <section>
+    <section className=' grid grid-cols-4 '>
       {!logStatus ? (
         <NavLink to='/' />
       ) : (
         <>
-          <h1 className='px-10 text-center text-indigo-600'>
+          <h1 className='col-start-1 col-end-5 px-10 text-center text-indigo-600'>
             You can search for any country by name, capital or contry code
           </h1>
-          <p className='text-center text-indigo-600'>
+          <p className='col-start-1 col-end-5 text-center text-indigo-600'>
             ...even with partial match
           </p>
-          <div className=' pt-6'>
+          <div className=' col-start-2 col-end-4 pt-6'>
             <img
               src={mapaMundi}
-              className='my-0 mx-auto  mt-7 w-96 rounded-full opacity-60'
+              className='my-0 mx-auto  mt-7 w-1/4 rounded-full opacity-60'
               alt='Mapa Mundi'
             />
           </div>
-          <SearchForm />
+          <SearchFormComponent />
         </>
       )}
     </section>

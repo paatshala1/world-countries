@@ -9,8 +9,7 @@ import ByLanguage from './components/ByLanguage/ByLanguage'
 import Countries from './components/Countries/Countries'
 import ErrorPageComponent from './components/Error/ErrorPageComponent'
 import About from './components/About/About'
-import SearcherComponent from './components/SearchForm/SearcherComponent'
-
+import SearchFormComponent from './components/SearchForm/SearchFormComponent'
 const router = createBrowserRouter([
   {
     element: <App />,
@@ -56,7 +55,7 @@ const router = createBrowserRouter([
           },
           {
             path: 'test',
-            element: <SearcherComponent />,
+            element: <SearchFormComponent />,
           },
         ],
       },

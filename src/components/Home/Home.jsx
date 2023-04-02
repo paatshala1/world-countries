@@ -1,6 +1,6 @@
 /* eslint-disable import/no-absolute-path */
 import SearchFormComponent from '../SearchForm/SearchFormComponent'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Country from '../Country/Country'
 
@@ -8,16 +8,19 @@ export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState(null)
   useEffect(() => localStorage.removeItem('stored-country'))
 
+  const resultRef = useRef(null)
+
   const data = localStorage.getItem('is-logged')
   const logStatus = JSON.parse(data)
 
   function onSelectedCountry(country) {
     setSelectedCountry(country)
+    resultRef.current.focus()
   }
 
   return (
     <>
-      <section className=' grid grid-cols-9 '>
+      <section id='home' className=' grid grid-cols-9 '>
         {!logStatus ? (
           <NavLink to='/' />
         ) : (
@@ -33,11 +36,22 @@ export default function Home() {
         )}
       </section>
       {selectedCountry !== null && (
-        <div className=' my-0 mx-auto mb-10 w-2/3'>
+        <div className=' my-12 mx-auto mb-3 w-2/3'>
           <Country country={selectedCountry} />
         </div>
       )}
-      <div className='text-white'>herm</div>
+      <div className=' flex'>
+        <a
+          href='#home'
+          ref={resultRef}
+          className=' my-0 mx-auto mb-6 border-orange-600 text-indigo-600'
+        >
+          Go up
+        </a>
+      </div>
+      <div id='selected' className='text-white'>
+        herm
+      </div>
     </>
   )
 }

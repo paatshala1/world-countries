@@ -55,14 +55,12 @@ export default function SearchFormComponent(props) {
 
     const urlToRequest = baseURL + data.criteria + '/' + data.searcher.trim()
     options.url = urlToRequest
-    console.log(options)
     const response = await httpCountriesRequest(options)
     if (!response.data) {
       ctx.onSetHttpError(response)
       setNotResults(true)
       // navigate('/error')
     } else {
-      console.log(response)
       reset()
       requestedCountries = extractData(response.data)
       sortCountries(requestedCountries)
@@ -73,8 +71,6 @@ export default function SearchFormComponent(props) {
 
   function selectionHandler(event) {
     const thisId = parseInt(event.target.dataset.identifier)
-    console.log('Clicked!')
-    console.log(thisId)
     const country = countriesByCriteria[thisId]
     props.selectedCountry(country)
   }

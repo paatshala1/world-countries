@@ -17,6 +17,10 @@ export default function Countries(props) {
   const ctx = useContext(MainContext)
 
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
+  const [visibilityClasses, setVisibilityClasses] = useState(
+    ' col-start-2 col-end-12 mb-8 flex flex-wrap gap-2 ',
+  )
+
   const resultRef = useRef(null)
 
   const navigate = useNavigate()
@@ -61,6 +65,9 @@ export default function Countries(props) {
     switch (action.type) {
       case 'COUNTRY SELECTED':
         localStorage.setItem('stored-country', JSON.stringify(action.value))
+        setVisibilityClasses(
+          ' col-start-2 col-end-12 mb-8 flex flex-wrap gap-2 invisible',
+        )
         return action.value
 
       case 'COUNTRY STORED':
@@ -80,6 +87,10 @@ export default function Countries(props) {
 
   function goToResult() {
     if (selectedCountry !== emptyCountry) resultRef.current.focus()
+  }
+
+  function onGoingTop() {
+    setVisibilityClasses(' col-start-2 col-end-12 mb-8 flex flex-wrap gap-2 ')
   }
 
   function selectionHandler(event) {
@@ -146,11 +157,9 @@ export default function Countries(props) {
 
   return (
     <>
-      <div className='grid grid-cols-12'>
-        <div id='start' className=' col-start-2 col-end-12 '>
-          {countriesBy}
-        </div>
-        <ul className=' col-start-2 col-end-12 mb-8 flex flex-wrap gap-2'>
+      <div id='start' className=' grid grid-cols-12 '>
+        <div className=' col-start-2 col-end-12 mb-10 '>{countriesBy}</div>
+        <ul className={`${visibilityClasses}`}>
           {countriesByCriteria.map((country, index) => {
             const myIndex = index.toString()
             return (
@@ -174,11 +183,12 @@ export default function Countries(props) {
         )}
         <div className=' col-start-2 col-end-12  flex '>
           <a
+            onClick={onGoingTop}
             href='#start'
             ref={resultRef}
-            className='my-2 mx-auto  mb-3  border-2 border-orange-600 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
+            className='my-2 mx-auto  mb-3  rounded-md border-2 border-orange-300 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
           >
-            Go up
+            Back to all countries
           </a>
         </div>
       </div>

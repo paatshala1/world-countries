@@ -48,7 +48,7 @@ export default function Home() {
         <a
           href='#start'
           ref={resultRef}
-          className=' my-2 mx-auto  mb-3 border-2 border-orange-600 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
+          className=' my-2 mx-auto  mb-3 rounded-md border-2 border-orange-300 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
         >
           Go up
         </a>

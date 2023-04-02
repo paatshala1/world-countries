@@ -1,5 +1,5 @@
 import { httpCountriesRequest } from '../../services/httpRequests'
-import { useEffect, useState, useReducer, useContext } from 'react'
+import { useEffect, useState, useReducer, useContext, useRef } from 'react'
 import MainContext from '../../store/main-context'
 import {
   useParams,
@@ -17,6 +17,8 @@ export default function Countries(props) {
   const ctx = useContext(MainContext)
 
   const [countriesByCriteria, setCountriesByCriteria] = useState([])
+  const resultRef = useRef(null)
+
   const navigate = useNavigate()
 
   const params = useParams()
@@ -49,6 +51,11 @@ export default function Countries(props) {
 
   options.url = baseURL + myURL
 
+  const [selectedCountry, dispatchSelectedCountry] = useReducer(
+    selectedCountryReducer,
+    emptyCountry,
+  )
+
   function selectedCountryReducer(state, action) {
     let storedValue
     switch (action.type) {
@@ -69,6 +76,10 @@ export default function Countries(props) {
       default:
         return emptyCountry
     }
+  }
+
+  function goToResult() {
+    if (selectedCountry !== emptyCountry) resultRef.current.focus()
   }
 
   function selectionHandler(event) {
@@ -111,7 +122,6 @@ export default function Countries(props) {
 
   async function uploadCountries(options) {
     const response = await httpCountriesRequest(options)
-    console.log(response)
 
     if (!response.data) {
       ctx.onSetHttpError(response)
@@ -128,17 +138,15 @@ export default function Countries(props) {
     uploadCountries(options)
   }, [])
 
-  const [selectedCountry, dispatchSelectedCountry] = useReducer(
-    selectedCountryReducer,
-  )
-
   // -----------------------------------RETURN-------------------------------------
 
   return (
     <>
-      <div className='result'>
-        <div className='result-title'>{countriesBy}</div>
-        <ul className='result-tiles'>
+      <div className='grid grid-cols-12'>
+        <div id='start' className=' col-start-2 col-end-12 '>
+          {countriesBy}
+        </div>
+        <ul className=' col-start-2 col-end-12 mb-8 flex flex-wrap gap-2'>
           {countriesByCriteria.map((country, index) => {
             const myIndex = index.toString()
             return (
@@ -160,8 +168,16 @@ export default function Countries(props) {
             />
           </Routes>
         )}
+        <div className=' col-start-2 col-end-12  flex'>
+          <a
+            href='#start'
+            // ref={resultRef}
+            className='my-2 mx-auto  mb-3 border-orange-600 text-indigo-600'
+          >
+            Go up
+          </a>
+        </div>
       </div>
-      {/* )} */}
     </>
   )
 }

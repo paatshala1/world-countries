@@ -45,7 +45,7 @@ export default function Country({ country }) {
   // --------------------------------------RETURN------------------------------------
 
   return (
-    <article className='  col-start-2 col-end-9 grid grid-cols-2 rounded-md bg-indigo-100 p-6 '>
+    <article className='  col-start-2 col-end-12 grid grid-cols-2 rounded-md bg-indigo-100 p-6 '>
       <div className=' col-span-full'>
         <p className=''>Subregion: {subregion}</p>
         <h1 className=''>{name}</h1>

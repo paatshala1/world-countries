@@ -77,7 +77,7 @@ export default function SearchFormComponent(props) {
 
   return (
     <>
-      <div className='col-start-2 col-end-9 mt-8 grid  grid-cols-3  justify-self-center text-white '>
+      <div className='col-start-2 col-end-12 mt-8 grid  grid-cols-3  justify-self-center text-white '>
         <section className=' bg-indigo-500 p-4'>
           <div className=' mb-6 grid content-center'>
             <LogoComponent />

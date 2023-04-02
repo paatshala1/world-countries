@@ -186,7 +186,7 @@ export default function SearchFormComponent(props) {
           </div>
         </form>
         {notResults && (
-          <div className=' p-4 '>
+          <div className='bg-zinc-50 p-4 '>
             <p className=' bg-orange-100  p-4 text-lg text-indigo-600 shadow-md'>
               There is no results for these criterias, please try another
               combination...or maybe a smaller text.
@@ -195,7 +195,7 @@ export default function SearchFormComponent(props) {
         )}
 
         {!notResults && (
-          <ul className=' grid grid-cols-2 flex-col content-center gap-4 p-4 '>
+          <ul className=' grid grid-cols-2 flex-col content-center gap-4 bg-zinc-50 p-4 '>
             {countriesByCriteria.map((country, index) => {
               const myIndex = index.toString()
               return (

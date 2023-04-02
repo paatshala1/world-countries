@@ -25,11 +25,15 @@ export default function SearchFormComponent(props) {
     register,
     handleSubmit,
     reset,
-    getFieldState,
-    trigger,
-    watch,
-    formState: { errors, isDirty, dirtyFields },
-    setValue,
+    // getFieldState,
+    // trigger,
+    // watch,
+    formState: {
+      errors,
+      // isDirty,
+      // dirtyFields ,
+    },
+    // setValue,
   } = useForm({
     defaultValues: {
       // country: '',
@@ -64,10 +68,6 @@ export default function SearchFormComponent(props) {
       sortCountries(requestedCountries)
       setCountriesByCriteria(requestedCountries)
       setNotResults(false)
-      // extractData(response.data)
-      // sortCountries(requestedCountries)
-      // setCountriesByCriteria(requestedCountries)
-      // dispatchSelectedCountry({ type: 'UPLOAD LOCAL STORAGE' })
     }
   }
 
@@ -81,7 +81,7 @@ export default function SearchFormComponent(props) {
 
   return (
     <>
-      <div className='col-start-2 col-end-9 mt-8 grid  grid-cols-3  justify-self-center shadow-md shadow-stone-200'>
+      <div className='col-start-2 col-end-9 mt-8 grid  grid-cols-3  justify-self-center text-white shadow-md shadow-stone-200'>
         <section className=' bg-indigo-500 p-4'>
           <div className=' mb-6 grid content-center'>
             <LogoComponent />

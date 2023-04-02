@@ -2,15 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  padding-bottom: 2rem;
+}
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: rgb(184, 180, 176);
-  /* background-color: #4f47f0; */
+  color: rgb(67, 56, 202);
+  /* background-color: rgb(184, 180, 176); */
+  background-color: rgb(244, 244, 245);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

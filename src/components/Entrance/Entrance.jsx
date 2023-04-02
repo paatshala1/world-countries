@@ -10,7 +10,7 @@ export default function Entrance() {
   }, [])
 
   return (
-    <div className=' w-screen place-content-center bg-white opacity-90'>
+    <div className=' w-screen place-content-center opacity-90'>
       <div className=' my-grid-rows grid p-4 py-8'>
         <div className='my-grid-title text-center text-indigo-500'>
           <h1 className='text-6xl font-bold'>

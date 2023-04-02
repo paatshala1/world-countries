@@ -28,15 +28,15 @@ export default function NavBar() {
               />
             </NavLink>
             <div className='flex flex-col'>
-              <p className='text-2xl'>
+              <p className='text-2xl text-white'>
                 <span className='text-3xl font-bold text-orange-400'>K</span>{' '}
                 now
               </p>
-              <p className='text-2xl'>
+              <p className='text-2xl text-white'>
                 <span className='text-3xl font-bold text-orange-400'>Y</span>{' '}
                 our
               </p>
-              <p className='text-2xl'>
+              <p className='text-2xl text-white'>
                 <span className='text-3xl font-bold text-orange-400'>W</span>{' '}
                 orld
               </p>

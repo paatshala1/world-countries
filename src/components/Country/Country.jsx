@@ -45,40 +45,42 @@ export default function Country({ country }) {
   // --------------------------------------RETURN------------------------------------
 
   return (
-    <article className='  mt-6 grid grid-cols-3 rounded-md bg-indigo-100 p-6'>
+    <article className='  mt-6 grid grid-cols-2 rounded-md bg-indigo-100 p-6 '>
       <div className=' col-span-full'>
-        <p className='text-indigo-700'>Subregion: {subregion}</p>
-        <h1 className='text-indigo-700'>{name}</h1>
-        <h2 className='text-2xl text-indigo-700'>{`Capital: ${capital}`}</h2>
-        <div className=' flex'>
-          <span className='text-indigo-700'>Find it in: </span>
-          <a
-            href={googleMaps}
-            target='_blank'
-            rel='noreferrer'
-            className='text-orange-300'
-          >
-            Google Maps
-          </a>
+        <p className=''>Subregion: {subregion}</p>
+        <h1 className=''>{name}</h1>
+        <h2 className='text-2xl '>{`Capital: ${capital}`}</h2>
+        <div className=' flex items-center'>
+          <span className=''>Find it in: </span>
+          <div>
+            <a
+              href={googleMaps}
+              target='_blank'
+              rel='noreferrer'
+              className='ml-2 text-orange-300'
+            >
+              Google Maps
+            </a>
+          </div>
         </div>
       </div>
 
-      <div className=' col-span-2 mt-4 grid grid-cols-2 justify-start gap-1 bg-indigo-200 py-4'>
+      <div className=' col-span-2 mt-4 grid grid-cols-2 justify-start gap-1 py-4'>
         <img className=' my-0 mx-auto' src={flagUrl} alt={`Flag of ${name}`} />
         <p className=' text-xl text-indigo-600'>{flagDesc}</p>
       </div>
 
-      <section className=' row-start-3 grid grid-cols-12 gap-2 p-4 text-indigo-700'>
+      <section className=' row-start-3 grid grid-cols-12 gap-2 p-4'>
         <h2 className='col-span-9 mt-6 border-t-4  border-indigo-600 pl-2 pt-2 text-2xl'>
           Section 1
         </h2>
         <div className=' col-span-full col-start-2 grid gap-2'>
           <p className=' col-span-full'>
-            Area: {area} km<sup>2</sup>
+            Area:{`  ${area}`} km<sup>2</sup>
           </p>
           <div className='grid grid-cols-5'>
             <p>Borders:</p>
-            <div className=' col-span-full col-start-2 flex gap-2'>
+            <div className=' col-span-full col-start-2 ml-2 flex flex-wrap gap-2'>
               {typeof borders === 'object'
                 ? borders.map(border => (
                     <span key={border}>{` ${border} `}</span>

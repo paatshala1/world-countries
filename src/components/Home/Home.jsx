@@ -6,7 +6,11 @@ import Country from '../Country/Country'
 
 export default function Home() {
   const [selectedCountry, setSelectedCountry] = useState(null)
-  useEffect(() => localStorage.removeItem('stored-country'))
+  useEffect(() => {
+    goToResult()
+
+    return () => localStorage.removeItem('stored-country')
+  }, [selectedCountry])
 
   const resultRef = useRef(null)
 
@@ -15,7 +19,10 @@ export default function Home() {
 
   function onSelectedCountry(country) {
     setSelectedCountry(country)
-    resultRef.current.focus()
+  }
+
+  function goToResult() {
+    if (selectedCountry !== null) resultRef.current.focus()
   }
 
   return (
@@ -34,23 +41,17 @@ export default function Home() {
             <SearchFormComponent selectedCountry={onSelectedCountry} />
           </>
         )}
+        {selectedCountry !== null && <Country country={selectedCountry} />}
       </section>
-      {selectedCountry !== null && (
-        <div className=' my-12 mx-auto mb-3 w-2/3'>
-          <Country country={selectedCountry} />
-        </div>
-      )}
+
       <div className=' flex'>
         <a
           href='#home'
           ref={resultRef}
-          className=' my-0 mx-auto mb-6 border-orange-600 text-indigo-600'
+          className=' my-2 mx-auto  mb-3 border-orange-600 text-indigo-600'
         >
           Go up
         </a>
-      </div>
-      <div id='selected' className='text-white'>
-        herm
       </div>
     </>
   )

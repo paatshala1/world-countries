@@ -27,15 +27,15 @@ export default function Home() {
 
   return (
     <>
-      <section id='home' className=' grid grid-cols-9 '>
+      <section id='start' className=' grid grid-cols-12 '>
         {!logStatus ? (
           <NavLink to='/' />
         ) : (
           <>
-            <h1 className='col-start-2 col-end-9 px-10 text-center text-indigo-600'>
+            <h1 className='col-start-2 col-end-12 px-10 text-center text-indigo-600'>
               You can search for any country by name, capital or contry code
             </h1>
-            <p className='col-start-2 col-end-9 text-center text-indigo-600'>
+            <p className='col-start-2 col-end-12 text-center text-indigo-600'>
               ...even with partial match
             </p>
             <SearchFormComponent selectedCountry={onSelectedCountry} />
@@ -46,9 +46,9 @@ export default function Home() {
 
       <div className=' flex'>
         <a
-          href='#home'
+          href='#start'
           ref={resultRef}
-          className=' my-2 mx-auto  mb-3 border-orange-600 text-indigo-600'
+          className=' my-2 mx-auto  mb-3 border-2 border-orange-600 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
         >
           Go up
         </a>

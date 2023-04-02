@@ -60,9 +60,11 @@ export const emptyCountry = {
   driving: '',
   flags: '',
   languages: '',
-  maps: '',
+  maps: {
+    googleMaps: '',
+  },
   name: '',
   population: '',
   subregion: '',
-  timezones: '',
+  timezones: [],
 }

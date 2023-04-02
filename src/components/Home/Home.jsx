@@ -32,7 +32,12 @@ export default function Home() {
           </>
         )}
       </section>
-      {selectedCountry !== null && <Country country={selectedCountry} />}
+      {selectedCountry !== null && (
+        <div className=' my-0 mx-auto mb-10 w-2/3'>
+          <Country country={selectedCountry} />
+        </div>
+      )}
+      <div className='text-white'>herm</div>
     </>
   )
 }

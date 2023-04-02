@@ -14,7 +14,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={myRouter}>
       <div
         name='app-container'
-        className='grid min-h-screen w-screen place-content-center bg-white opacity-90'
+        className='grid min-h-screen w-screen place-content-center'
       >
         <App />
       </div>

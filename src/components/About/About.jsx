@@ -88,24 +88,27 @@ export default function About() {
             <li className='pl-5'>
               <h4>Reusables Hooks</h4>
               <p className='pl-3'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-                magnam quam, ipsam iste quidem doloremque provident sed nesciunt
-                hic, vitae laboriosam cupiditate eius corrupti nam blanditiis!
-                Quam impedit officiis sit!
+                Se creó un custom hook que se encarga de desplegar/ocultar el
+                total de resultados de una lista. es básicamente un toogle, sin
+                embarog tiene la particularidad de recibir como parámetros el
+                texto que se quiere mostar dependiendo de cada estado, por lo
+                tanto brinda cierta flixibilidad.
               </p>
               <br />
             </li>
             <li className='pl-5'>
               <h4>Form Library</h4>
               <p className='pl-3'>
-                Se utilizó Formik ya que es claramente la herramienta favorita
-                en el entorno de React, además es destacable su versatilidad y
-                agilidad.
+                En principio se utilizó Formik ya que es claramente la
+                herramienta favorita en el entorno de React ser la que se vio en
+                bootcamp, sin embargo luego de investigar un poco más se decidió
+                cambiar todo a react-hook-form dada su flexibilidad potencia y
+                limpieza de código.
               </p>
               <br />
               <p className='pl-3'>
                 De acuerdo a lo solicitado, se realizaron las validaciones de
-                los campos y el formulario por medio de Formik.
+                los campos y el formulario por medio de react-hook-form.
               </p>
               <br />
             </li>

@@ -8,7 +8,6 @@ export default function ErrorPageComponent() {
   const routerError = useRouteError()
   const ctx = useContext(MainContext)
   const err = ctx.currentError
-  console.log(err)
 
   return (
     <>

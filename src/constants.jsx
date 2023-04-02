@@ -66,5 +66,5 @@ export const emptyCountry = {
   name: '',
   population: '',
   subregion: '',
-  timezones: '',
+  timezones: [],
 }

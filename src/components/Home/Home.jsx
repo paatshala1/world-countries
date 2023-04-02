@@ -27,7 +27,7 @@ export default function Home() {
 
   return (
     <>
-      <section id='home' className=' grid grid-cols-12 '>
+      <section id='start' className=' grid grid-cols-12 '>
         {!logStatus ? (
           <NavLink to='/' />
         ) : (
@@ -46,9 +46,9 @@ export default function Home() {
 
       <div className=' flex'>
         <a
-          href='#home'
+          href='#start'
           ref={resultRef}
-          className=' my-2 mx-auto  mb-3 border-orange-600 text-indigo-600'
+          className=' my-2 mx-auto  mb-3 border-2 border-orange-600 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
         >
           Go up
         </a>

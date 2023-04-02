@@ -138,6 +138,10 @@ export default function Countries(props) {
     uploadCountries(options)
   }, [])
 
+  useEffect(() => {
+    goToResult()
+  }, [selectedCountry])
+
   // -----------------------------------RETURN-------------------------------------
 
   return (
@@ -168,11 +172,11 @@ export default function Countries(props) {
             />
           </Routes>
         )}
-        <div className=' col-start-2 col-end-12  flex'>
+        <div className=' col-start-2 col-end-12  flex '>
           <a
             href='#start'
-            // ref={resultRef}
-            className='my-2 mx-auto  mb-3 border-orange-600 text-indigo-600'
+            ref={resultRef}
+            className='my-2 mx-auto  mb-3  border-2 border-orange-600 py-2 px-4 text-indigo-600 hover:bg-orange-100 '
           >
             Go up
           </a>

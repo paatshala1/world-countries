@@ -45,7 +45,7 @@ export default function Country({ country }) {
   // --------------------------------------RETURN------------------------------------
 
   return (
-    <article className='  mt-6 grid grid-cols-2 rounded-md bg-indigo-100 p-6 '>
+    <article className='  col-start-2 col-end-9 grid grid-cols-2 rounded-md bg-indigo-100 p-6 '>
       <div className=' col-span-full'>
         <p className=''>Subregion: {subregion}</p>
         <h1 className=''>{name}</h1>
@@ -88,14 +88,11 @@ export default function Country({ country }) {
                 : borders}
             </div>
           </div>
-          <div className='grid grid-cols-12'>
+          <div className='grid grid-cols-3'>
             <p>Timezone(s):</p>
-            <ul className=' col-span-full grid grid-cols-12'>
+            <ul className=' col-span-full grid grid-cols-3 gap-1'>
               {timezones.map((zone, index) => (
-                <li
-                  key={`${zone}_${index}`}
-                  className=' col-span-full col-start-2'
-                >
+                <li key={`${zone}_${index}`} className=' '>
                   {zone}
                 </li>
               ))}

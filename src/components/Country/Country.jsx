@@ -88,9 +88,9 @@ export default function Country({ country }) {
                 : borders}
             </div>
           </div>
-          <div className='grid grid-cols-5'>
+          <div className='grid grid-cols-12'>
             <p>Timezone(s):</p>
-            <ul className=' col-span-full grid grid-cols-4'>
+            <ul className=' col-span-full grid grid-cols-12'>
               {timezones.map((zone, index) => (
                 <li
                   key={`${zone}_${index}`}
@@ -121,8 +121,8 @@ export default function Country({ country }) {
           </div>
           {/* <p>Language(s): {languages}</p> */}
           <div className='grid grid-cols-5'>
-            <p>Currencies</p>
-            <ul className=' col-span-full grid grid-cols-4'>
+            <p>Currencies:</p>
+            <ul className=' col-span-full grid grid-cols-12'>
               {currencies.map(currency => (
                 <li key={currency[0]} className=' col-span-full col-start-2'>
                   <div>
